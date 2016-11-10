@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.besteasy.cmoa.file.mapper.FileMapper">
+	<select id="getFileList" resultType="com.besteasy.cmoa.entity.File">
+		SELECT id,`name`,url FROM files
+	</select>
+	<select id="getFileId" resultType="java.lang.Integer">
+		select id from files where url = #{realPath}
+	</select>
+	
+	<delete id="deleteFileById">
+		DELETE FROM files WHERE id = #{id}
+	</delete>
+	
+	<select id="getFileById"  resultType="com.besteasy.cmoa.entity.File">
+		select id,`name`,url from files where id = #{id}
+	</select>
+	
+	<!-- 一次插一条 -->
+	<insert id="saveFile">
+		insert into files(`name`,url) values(#{name} ,#{url})
+	</insert>
+	
+	<!-- 批量插入 -->
+	<insert id="batchInsertFile"  parameterType="ArrayList">
+	
+		insert into files(name,url) values
+		
+		 <foreach item="file" index="key" collection="list"    
+            open="" separator="," close="">(#{file.name}, #{file.url})
+		 </foreach> 
+		
+	</insert>
+	
+	
+</mapper>
