@@ -71,12 +71,14 @@ public class FileUpload {
 	
 	@RequestMapping(value="deleteFile/{id}",method=RequestMethod.DELETE)
 	public void delete(@PathVariable(value="id") Integer id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		
 		com.besteasy.cmoa.entity.File file = fileService.getFileById(id);
 		System.out.println("--------------------------删除开始");
 		fileService.deleteFile(file,DataProcessUtils.subPath(file.getUrl()));
 		String header = request.getHeader("Referer");
 		response.sendRedirect(header);
 		System.out.println("--------------------------删除结束");
+		
 	}
 	
 	
