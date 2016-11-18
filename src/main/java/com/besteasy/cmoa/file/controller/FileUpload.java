@@ -158,9 +158,9 @@ public class FileUpload {
 	                		//request.getSession().getServletContext().getRealPath("/upload");
 	                System.out.println(realPath);
 	                //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉
-	                FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, myfile.getOriginalFilename()));
-	               com.besteasy.cmoa.entity.File f = new com.besteasy.cmoa.entity.File(null, realfilename, DataProcessUtils.toRealPath(realPath,realfilename));
 	                
+	                FileUtils.copyInputStreamToFile(myfile.getInputStream(), new File(realPath, myfile.getOriginalFilename()));
+	                com.besteasy.cmoa.entity.File f = new com.besteasy.cmoa.entity.File(null, realfilename, DataProcessUtils.toRealPath(realPath,realfilename));
 	               	params.add(f);
 	               
 	                
